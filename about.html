@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+
+	<body>
+		<!--Import jQuery before materialize.js-->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script>
+			$(document).ready(function(){
+			  $('.parallax').parallax();
+			});
+		</script>
+
+		<header>
+			<!--Side navigation-->
+			<ul id="nav-bar" class="side-nav fixed">
+			   <li>
+				  <div class="user-view">
+					 <div class="background" style="background-color: grey;"></div>
+					 <a href=""><img class="circle" src="images/me.jpg"></a>
+					 <a href=""><span class="white-text name">Samuel Hine</span></a>
+					 <a href=""><span class="white-text email">sam.hine27@gmail.com</span></a>
+			   </li>
+			   <li><a class="waves-effect" href="index.html">HOME</a></li>
+			   <li><a class="waves-effect" href="about.html">ABOUT</a></li>
+			   <li><a class="waves-effect" href="projects.html">PROJECTS</a></li>
+			   <li><a class="waves-effect" href="https://github.com/constantlyconfused/">GIT</a></li>
+			   <li><a class="waves-effect" href="https://www.linkedin.com/in/samuel-hine-07828113a/">LINKEDIN</a></li>
+			</ul>
+		</header>
+
+		<main>
+			<!-- Wrapper class to offset side navigation-->
+			<div class="wrapper">
+				<!--Parallax picture frame-->
+				<div class="parallax-container">
+					<div class="parallax"><img src="images/parallax1.jpg"></div>
+				</div>
+				<!--Title and intro-->
+				<div class="section white">
+					<div class="row container">
+						<h2 class="header">ABOUT ME</h2>
+						<p class="grey-text text-darken-3 lighten-3">This page gives insight into different parts of my life, including my academic background, and what I get up to in my free time.</p>
+					</div>
+				</div>
+				<!--Information sections-->
+
+				<!--First half of page-->
+				<div class="col s6">
+					<div class="row container">
+						<h4>EDUCATION</h4>
+						<p class="grey-text text-darken-3 lighten-3">
+							I currently study Data Science (which I like to describe as a mix between computer science and statistics) at the University of Warwick, based in Coventry in the UK.
+							I'm now in my third year of study, having achieved a 2:1 in both my first and second year.
+							<br><br>
+							Before university I attended Wymondham High Academy based in Norfolk, UK, and subsequently Wymondham High Sixth Form.
+							I received the highest grade in the year for computer science during my A-Levels, and helped teach the lower years programming in my free time.
+							<br><br>
+							More detailed information can be found on my LinkedIn page, which is to the left of this text.
+						<p>
+					</div>
+
+					<div class="row container">
+						<h4>EXTRA CURRICULAR</h4>
+						<p class="grey-text text-darken-3 lighten-3">
+							I am currently the President of the Esports society at Warwick University. This entails meetings with the student union, organising advertising for the society, managing social media accounts,
+							and also organising LAN parties (generally were a group of similarly-interested people all haul their computers into the same room to play a game, rather than simply using the internet). 
+							From the time of founding myself and other committee members have worked hard to make Warwick Esports the nationally and internationally recognised organisation that it is today.
+							<br><br>
+							I've done a few things outside of my primary education, the hardest and most rewarding being completing DofE (currently finishing up my Gold Award).<br>
+							DofE is a scheme which has 4 main components, volunteering, learning a skill, practising a sport, and going out on an expedition. Usually these 4 components are completed by dedicating an hour a week to each,
+							over a certain time frame (depending on the level).
+							The expedition is a 2-5 day (again, depending on the level) outing to a not-so-nearby countryside area, where as a team students must navigate their way around the wilderness and camp in tents once they reach their
+							destination.
+							I enjoyed the expedition that I even volunteered to help out, and be a temporary instructor for some of the lower years who were just starting to undergo their DofE journey.
+							<br><br>
+							In the same vein, between 2012 and 2015, I joined a sailing camp for a week, meeting new people as well as learning/teaching people how to sail. In my last year I was appointed the position of First mate, which involved
+							helping out the captain with organising routes, chores, disputes, and so on. The only reason I stopped going was unfortunately because I grew too old!
+							<br><br>
+							Towards the end of the last academic year I joined the SSLC (Student-Staff liaison committee) as the Fresher's Data Science Representative, which gave me a chance to voice my concerns about Data Science within the statistics
+							department from a 1st year perspective, and also gave me insight into the department's inner workings.
+						<p>
+					</div>
+
+					<div class="row container">
+						<h4>EMPLOYMENT</h4>
+						<p class="grey-text text-darken-3 lighten-3">
+							My most recent placement was at <a href="https://gamoloco.com/">Gamoloco</a> where I worked on a few projects ranging from data processing of Twitch chat, to basic p5 animation. It taught me a lot about industry web development,
+							as well as using database and data storage systems I wasn't so familiar with such as MongoDB.
+							<br><br>
+							While studying for my A-Levels at Wymondham High, I worked as a cleaner in the evenings. I was assigned 4 rooms, and for 2-3 nights a week would stay after hours to vacuum, wash tables, and carry out waste. Since in this time
+							I was also studying for my upcoming exams, I had to manage my time well enough to allow for enough revision - which was harder than the job itself!
+							<br><br>
+							Before the start of this academic year I also signed up to help on one of the open days, which allowed current 6th form students to look around the university. I was stationed in the Statistics Department, answering and questions
+							or queries the upcoming students/parents had about the Data Science course. This also encouraged me to sign up as a full time helper for the university, meaning I would also perhaps give campus/accommodation tours in my free time.
+						<p>
+					</div>
+				</div>
+
+			</div>
+		</main>
+
+	</body>
+</html>
+
+<style type="text/css">
+.wrapper {
+    padding-left: 300px;
+}
+</style>
