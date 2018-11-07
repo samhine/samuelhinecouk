@@ -30,6 +30,8 @@ function draw() {
       continue;
     }
   }
+	
+  console.log(ripples.length);
 }
 
 function Ripple(pos, rate){
