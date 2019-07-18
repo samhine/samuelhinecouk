@@ -26,6 +26,7 @@
 		  margin-right: auto;
 		  width: 50%;
 		}
+
 		</style>
 
 		<header>
@@ -82,13 +83,13 @@
 							<br><br>
 							<b>Other considerations</b>
 							<br>
-							When analysing whether higher ward placement rates are conducive to winning games, we must also consider to converse case - "do teams ward more when they are winning?". Unfortunately, timeline data is not available for UKLC games so further investigation to the rate of ward placements after some winning indicator (such as gold lead) is not possible. So, this possibility is just a factor to consider throughout. It is also very strange to consider a univariate analysis (that is, only focusing on one variable) for a game as complicated as League of Legends since there are obviously many co-dependent variables within a game instance which contribute to the victory or defeat of a team. Within trying to be to political, this is also a <a href="https://journals.sagepub.com/doi/pdf/10.1177/1464884915593234">common problem</a> in many attention grabbing news headlines, where journalists tend to focus purely on one statistic and treat it as the governing factor without considering a multivariate analysis. <br>
-							In this case, I'll simply acknowledge that the consideration of <i>only</i> wards in a game may be ignorant, but for explorations sake it's still a worthwhile endeavor.
+							When analysing whether higher ward placement rates are conducive to winning games, we must also consider to converse case - "do teams ward more when they are winning?". Unfortunately, timeline data is not available for UKLC games so further investigation to the rate of ward placements after some winning indicator (such as gold lead) is not possible. So, this possibility is just a factor to consider throughout. It is also very strange to consider a univariate analysis (that is, only focusing on one variable) for a game as complicated as League of Legends, since there are obviously many co-dependent variables within a game instance which contribute to the victory or defeat of a team. Without trying to be to political, this is also a <a href="https://journals.sagepub.com/doi/pdf/10.1177/1464884915593234">common problem</a> in many attention grabbing news headlines, where journalists tend to focus purely on one statistic and treat it as the governing factor without considering a multivariate analysis. <br>
+							In this case, I'll simply acknowledge that the consideration of <i>only</i> wards in a game may be ignorant, but for exploration's sake it's still a worthwhile endeavor.
 							</p>
 							<br>
 							<b>What is warding?</b>
 							<br>
-							For the few readers who aren't up to scratch on their League of Legends knowledge, I've recruited Kasey (<a href="https://twitter.com/_WEEXIAO">@_WEEXIAO</a>) to tell us more about warding, and why it's important.
+							For the few readers who aren't up to scratch on their League of Legends knowledge, I've got Kasey (<a href="https://twitter.com/_WEEXIAO">@_WEEXIAO</a>) to tell us more about warding, and why it's important.
 							<blockquote>
 					      Hi my name is kasey and I have a big brain yadda yadda
 					    </blockquote>
@@ -121,26 +122,590 @@
 							<li> <b>·</b> The lowest warding rate of any player was DBL jungler PFI against XL (game 6) with 0.2 wards per minute. </li>
 							</ul>
 							<br>
-							Below are the full tables for match, team and individual breakdowns.
+							Below are the full tables for match, team and individual breakdowns;
 
 							<br>
 							<ul class="collapsible">
 						    <li>
 						      <div class="collapsible-header"><i class="material-icons">list</i>Match Breakdown</div>
-						      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						      <div class="collapsible-body">
+										<table class="highlight">
+											<thead>
+											  <tr>
+											    <th>Match</th>
+											    <th>Team</th>
+											    <th>Wards Placed Per Min</th>
+											    <th>Wards Destroyed Per Min</th>
+											    <th>Win?</th>
+											  </tr>
+											</thead>
+
+											<tbody>
+											  <tr>
+											    <td rowspan="2">1</td>
+											    <td>DMS</td>
+											    <td>2.75191104933982</td>
+											    <td>1.00069492703266</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>NVE</td>
+											    <td>2.58512856150104</td>
+											    <td>0.833912439193885</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">2</td>
+											    <td>DBL</td>
+											    <td>3.74070138150903</td>
+											    <td>1.72157279489904</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>PHL</td>
+											    <td>3.76195536663124</td>
+											    <td>1.48777895855473</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">3</td>
+											    <td>ENC</td>
+											    <td>2.94117647058824</td>
+											    <td>1.35294117647059</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>MNM</td>
+											    <td>3.23529411764706</td>
+											    <td>1.52941176470588</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">4</td>
+											    <td>BRG</td>
+											    <td>2.86940527283875</td>
+											    <td>1.03004291845494</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>XL</td>
+											    <td>3.16370324954016</td>
+											    <td>1.36112814224402</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">5</td>
+											    <td>FNC</td>
+											    <td>3.23119777158774</td>
+											    <td>1.08635097493036</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>XL</td>
+											    <td>3.3983286908078</td>
+											    <td>1.3091922005571</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">6</td>
+											    <td>DBL</td>
+											    <td>2.63374485596708</td>
+											    <td>1.02880658436214</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>XL</td>
+											    <td>2.51028806584362</td>
+											    <td>1.11111111111111</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">7</td>
+											    <td>MNM</td>
+											    <td>2.82235749861649</td>
+											    <td>0.962921970116215</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>XL</td>
+											    <td>2.82235749861649</td>
+											    <td>1.36137244050913</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">8</td>
+											    <td>DBL</td>
+											    <td>3.17748091603053</td>
+											    <td>1.34541984732824</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>DMS</td>
+											    <td>3.34923664122137</td>
+											    <td>1.31679389312977</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">9</td>
+											    <td>DMS</td>
+											    <td>2.96809986130374</td>
+											    <td>0.776699029126214</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>PHL</td>
+											    <td>3.1622746185853</td>
+											    <td>0.748959778085992</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">10</td>
+											    <td>FNC</td>
+											    <td>2.84879474068663</td>
+											    <td>1.13951789627465</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>NVE</td>
+											    <td>2.36669101533966</td>
+											    <td>0.613586559532506</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">11</td>
+											    <td>DBL</td>
+											    <td>3.85164051355207</td>
+											    <td>1.6262482168331</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>ENC</td>
+											    <td>2.97432239657632</td>
+											    <td>1.99001426533524</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">12</td>
+											    <td>BRG</td>
+											    <td>3.3153302866639</td>
+											    <td>1.37100124636477</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>MNM</td>
+											    <td>3.34025758205235</td>
+											    <td>1.71998338180307</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">13</td>
+											    <td>DMS</td>
+											    <td>3.38931297709924</td>
+											    <td>0.824427480916031</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>FNC</td>
+											    <td>3.61832061068702</td>
+											    <td>1.09923664122137</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">14</td>
+											    <td>DBL</td>
+											    <td>3.00319488817891</td>
+											    <td>0.894568690095847</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>MNM</td>
+											    <td>2.58785942492013</td>
+											    <td>1.43769968051118</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">15</td>
+											    <td>FNC</td>
+											    <td>3.32225913621262</td>
+											    <td>1.19601328903654</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>MNM</td>
+											    <td>2.35880398671096</td>
+											    <td>1.09634551495017</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">16</td>
+											    <td>FNC</td>
+											    <td>3.37895971842002</td>
+											    <td>1.68947985921001</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>XL</td>
+											    <td>3.26163472819711</td>
+											    <td>1.83026984747751</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">17</td>
+											    <td>ENC</td>
+											    <td>2.59299781181619</td>
+											    <td>1.2800875273523</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>XL</td>
+											    <td>2.85557986870897</td>
+											    <td>1.64113785557987</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">18</td>
+											    <td>BRG</td>
+											    <td>2.11372064276885</td>
+											    <td>1.11248454882571</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td>PHL</td>
+											    <td>3.04079110012361</td>
+											    <td>0.815822002472188</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">19</td>
+											    <td>DBL</td>
+											    <td>2.87812041116006</td>
+											    <td>1.40969162995595</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>DMS</td>
+											    <td>2.79001468428781</td>
+											    <td>0.881057268722467</td>
+											    <td>FALSE</td>
+											  </tr>
+											  <tr>
+											    <td rowspan="2">20</td>
+											    <td>MNM</td>
+											    <td>2.4910302409021</td>
+											    <td>1.19938493080472</td>
+											    <td>TRUE</td>
+											  </tr>
+											  <tr>
+											    <td>NVE</td>
+											    <td>2.82931829830856</td>
+											    <td>0.584315735520246</td>
+											    <td>FALSE</td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header"><i class="material-icons">group</i>Team Breakdown</div>
-						      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						      <div class="collapsible-body">
+										<table class="tg highlight">
+											<thead>
+											  <tr>
+											    <th class="tg-0lax">Team</th>
+											    <th class="tg-0lax">Average Wards Placed per Minute</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">3.32167369511338</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">3.27990639551881</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">3.21414716106628</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">3.0497150426504</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">3.00198201695236</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">2.83616555966025</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.80593380847485</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">2.76615206742383</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">2.59371262504976</td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header"><i class="material-icons">person</i>Player Breakdown</div>
-						      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						      <div class="collapsible-body">
+										<table class="tg highlight">
+											<thead>
+											  <tr>
+											    <th class="tg-0lax">Team</th>
+											    <th class="tg-0lax">Player</th>
+											    <th class="tg-0lax">Average Wards Placed per Minute</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Viggo</td>
+											    <td class="tg-0lax">1.36340958111292</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">KaSing</td>
+											    <td class="tg-0lax">1.32360544187889</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">Prosfair</td>
+											    <td class="tg-0lax">1.27825272530222</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Heathen</td>
+											    <td class="tg-0lax">1.18639952627864</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Visdom</td>
+											    <td class="tg-0lax">1.13933145331676</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Propameal</td>
+											    <td class="tg-0lax">1.02932479606036</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Raizins</td>
+											    <td class="tg-0lax">0.913588988069499</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Fastlegged</td>
+											    <td class="tg-0lax">0.840036429468427</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Munckizz</td>
+											    <td class="tg-0lax">0.812191268529833</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Shogun</td>
+											    <td class="tg-0lax">0.811103488286015</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Sof</td>
+											    <td class="tg-0lax">0.70961249742395</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Noltey</td>
+											    <td class="tg-0lax">0.682841388323175</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">Nji</td>
+											    <td class="tg-0lax">0.660892539773774</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">PFI</td>
+											    <td class="tg-0lax">0.633368023917353</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Kehvo</td>
+											    <td class="tg-0lax">0.595542277068714</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Send0o</td>
+											    <td class="tg-0lax">0.577458578376402</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Furuy</td>
+											    <td class="tg-0lax">0.558317679207224</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">Shikari</td>
+											    <td class="tg-0lax">0.557158364133839</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Batu</td>
+											    <td class="tg-0lax">0.542043085476025</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Chemera</td>
+											    <td class="tg-0lax">0.5198685976102</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Only Angel</td>
+											    <td class="tg-0lax">0.518419635313855</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Kakan</td>
+											    <td class="tg-0lax">0.505383517105646</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Diva</td>
+											    <td class="tg-0lax">0.503306246833391</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Renghis</td>
+											    <td class="tg-0lax">0.501083380814064</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Infinity</td>
+											    <td class="tg-0lax">0.492770473701303</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Skude</td>
+											    <td class="tg-0lax">0.490854228986081</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">DenVoksne</td>
+											    <td class="tg-0lax">0.482879942859723</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Xizz3l</td>
+											    <td class="tg-0lax">0.481781288218348</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Achuu</td>
+											    <td class="tg-0lax">0.471079858544124</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Chibs</td>
+											    <td class="tg-0lax">0.461143248936084</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Hidon</td>
+											    <td class="tg-0lax">0.432286663693771</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">xMatty</td>
+											    <td class="tg-0lax">0.424741458715391</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">3z3</td>
+											    <td class="tg-0lax">0.410336998885737</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Zeiko</td>
+											    <td class="tg-0lax">0.395267267212573</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Special</td>
+											    <td class="tg-0lax">0.386589205890649</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Brelia</td>
+											    <td class="tg-0lax">0.378181867035622</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Taxer</td>
+											    <td class="tg-0lax">0.362322027094989</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">MagiFelix</td>
+											    <td class="tg-0lax">0.35886130759359</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Vixen</td>
+											    <td class="tg-0lax">0.353920303414963</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Hjarnan</td>
+											    <td class="tg-0lax">0.352006763711428</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Jakamaka</td>
+											    <td class="tg-0lax">0.338545455147358</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Beeley</td>
+											    <td class="tg-0lax">0.335096684721891</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Yusa</td>
+											    <td class="tg-0lax">0.332426047615719</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Dragdar</td>
+											    <td class="tg-0lax">0.330678414557414</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Spark</td>
+											    <td class="tg-0lax">0.283098489366738</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Zhergoth</td>
+											    <td class="tg-0lax">0.272072667444824</td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
 						    </li>
 						  </ul>
 							<br>
 
-							So, I hope you learnt something about warding in the UKLC and perhaps something about the methods of data analytics.
+							So, I hope you learnt something about warding in the UKLC and perhaps something about the methods of data analytics. <br>
 							If you have any suggestions, comments or hate, feel free to tweet me <a href="https://twitter.com/samhine_">@samhine_</a>.
 							<br><br>
 							Until next time...
