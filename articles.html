@@ -63,13 +63,433 @@
 					<div class="col s10 m10 offset-s1 offset-m1">
 					  <div class="card">
 						<div class="card-content">
+						  <p style="text-align: right;"><i>23/07/2019</i></p><br>
+						  <span class="card-title" name="article-title">Who has the biggest brain in the <a href="https://uklc.lvp.global/">UKLC</a>?</span>
+							<span name="coauthors"><i>Apart from me, of course...</i></span><br>
+						  <br><br>
+							<p>
+							At the start of the summer split, a few people took to twitter to express their perceived rankings of teams before the games had started. Here, we'll take a look at these rankings, their differences to the current score table, and the metrics we can use measure their "correctness".
+							<br><br>
+							<b>The Problem</b>
+							<br>
+							We have a table of predictions (specifically 9 UKLC teams) who's order determines their performance rankings. We'd like to generate a robust metric which can measure the "wrongness" of a table of predictions compared to their true value. In other areas on statistics, performance metrics are usually based on their "distance" from the true values (where distance can be defined in a number of ways), and are useful for the training/analysis of models, such as neural networks and other areas of machine learning. In our case, we're not so much worried about using a metric to train a model, just to find out who's been the "most correct" so far in their initial rankings.
+							<br><br>
+							<b>The Data</b>
+							<br>
+							After searching Twitter, I managed to wrangle 5 tier lists which users had put out, those users being Aux (<a href="https://twitter.com/AuxCasts/status/1145065812006449152/photo/1">@AuxCasts</a>), Crane (<a href="https://twitter.com/CraneLoL/status/1143594871518846976/photo/2">@CraneLoL</a>), Viggo (<a href="https://twitter.com/ViggoEdits/status/1144349586796032005/photo/1">@ViggoEdits</a>), Snuggli (<a href="https://twitter.com/Snuggli_/status/1144698061433782274">@Snuggli_</a>) and Royal (<a href="https://twitter.com/royalwinsmid/status/1143934789537472512">@royalwinsmid</a>). These are the tier lists I'll be using for my analysis.
+							All 5 of their predictions can be found below;
+							<div class="row center">
+						    <div class="col s12">
+						      <ul class="tabs">
+						        <li class="tab col"><a class="active" href="#test1">Aux</a></li>
+						        <li class="tab col"><a href="#test2">Crane</a></li>
+						        <li class="tab col"><a href="#test3">Viggo</a></li>
+						        <li class="tab col"><a href="#test4">Snuggli</a></li>
+										<li class="tab col"><a href="#test5">Royal</a></li>
+						      </ul>
+						    </div>
+						    <div id="test1" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>MNM</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>XL</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						    <div id="test2" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>XL</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>MNM</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						    <div id="test3" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>XL</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>MNM</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						    <div id="test4" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>XL</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>MNM</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>PHL</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+								<div id="test5" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>ENC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>BRG</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>XL</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>NVE</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>FNC</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>MNM</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						  </div>
+
+							<br><br>
+							<b>The Method</b>
+							<br>
+							There are a few ideas I have personally for how this could be approached. The first (and most obvious) approach would be calculate the <i>sum of differences</i> for each of the prediction tables compared to the current true table. So, if someone was completely correct in their predictions but 1st and 2nd were switched, their score would be 2, since their 1st place prediction was 1 slot away, as well as their 2nd place prediction. One could simply divide this by 2 (which I'd imagine would seem more sensible in most peoples head), so I'll apply this transformation at the end.
+							<br>
+							The second method that comes to mind is calculating the amount of "switches" required for a predictions table for it to match the current true table. So, for example, if the rankings `1, 2, 3, 4` were correct, and someone had predicted `2, 4, 3, 1`, their score would be 2, since two switches (1 and 2, then 2 and 4) would render the table correct.
+							<br>
+							Each of these metrics have their downfalls. The second metric is great at telling us the complexity of "wrongness" of the predictions, but treats predictions such as `1, 3, 2, 4` and `4, 2, 3, 1` as equal when in most cases the second should be punished more. In this example, I'll choose to mainly focus on the first metric (which we'll now refer to as the "sum of differences") rather than the second.
+							<br><br>
+							<b>The Results</b>
+							<br>
+							For the results, I'll choose Aux's predictions and walk through the calculation of his score. Here are his predictions and the current true table side by side, with differences marked.
+							<div class="row center">
+						    <div class="col s12">
+									<table>
+						        <thead>
+						          <tr>
+						              <th>Team</th>
+													<th>Actual</th>
+						              <th>Predicted</th>
+													<th>Difference</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>XL</td>
+						            <td>1</td>
+												<td>3</td>
+												<td>2</td>
+						          </tr>
+						          <tr>
+						            <td>FNC</td>
+						            <td>2</td>
+												<td>1</td>
+												<td>1</td>
+						          </tr>
+						          <tr>
+						            <td>MNM</td>
+						            <td>3</td>
+												<td>2</td>
+												<td>1</td>
+						          </tr>
+											<tr>
+						            <td>DBL</td>
+						            <td>4</td>
+												<td>6</td>
+												<td>2</td>
+						          </tr>
+						          <tr>
+						            <td>DMS</td>
+						            <td>5</td>
+												<td>7</td>
+												<td>2</td>
+						          </tr>
+						          <tr>
+						            <td>PHE</td>
+						            <td>6</td>
+												<td>5</td>
+												<td>1</td>
+						          </tr>
+											<tr>
+						            <td>BRG</td>
+						            <td>7</td>
+												<td>4</td>
+												<td>3</td>
+						          </tr>
+						          <tr>
+						            <td>ENC</td>
+						            <td>8</td>
+												<td>8</td>
+												<td>0</td>
+						          </tr>
+						          <tr>
+						            <td>NVE</td>
+						            <td>9</td>
+												<td>9</td>
+												<td>0</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+							</div>
+							<br>
+						  Starting with the first prediction, we find the distance to the matching team in the true table, in this case 2. <br>
+						  For the second prediction, this distance is 1. <br>
+						  For the third, 1 and so on... <br>
+							<br>
+ 							In the end Aux's differences total 12, which means his final score is 6.
+							<br>
+ 							We can apply the same metric to the other 4 predictions table which give the resultant scores;
+							<div class="row center">
+						    <div class="col s12">
+									<table>
+						        <thead>
+						          <tr>
+						              <th>User</th>
+													<th>Score</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+											<tr>
+						            <td>Viggo</td>
+						            <td>5</td>
+						          </tr>
+						          <tr>
+						            <td>Aux</td>
+						            <td>6</td>
+						          </tr>
+						          <tr>
+						            <td>Crane</td>
+						            <td>7</td>
+						          </tr>
+											<tr>
+						            <td>Snuggli</td>
+						            <td>7</td>
+						          </tr>
+											<tr>
+						            <td>Royal</td>
+						            <td>17.5</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+							</div>
+
+							<br><br>
+							<b>Limitations and Extensions</b>
+							<br>
+							An obvious limitation is that in actuality, the bottom 3 teams all sit at 0 points. This means that the difference calculation for these three teams is a little skewed in favour of those guessed the bottom teams correctly. This should simply be noted, I'll probably come back to this at the end of the season when the point table is more distributed, and more concerete assumptions about brain sizes can be made.
+							<br>
+							There are a few extensions I can think of, mainly involving weightings. For example, wrong guesses towards the top of table could have more of an impact on score than wrong guesses towards the bottom.
+							Subjectively, switching 1st and 2nd is a lot more meaningful than 7th and 8th. Also, weightings on how <i>close</i> two teams are together (in terms of points). If Team A trials Team B by 1 point, and Team C trials Team B by 20 points, mistaking their positions should have different levels of meanings.
+							<br><br>
+							I hope you enjoyed this (somewhat short) article.
+							<br>
+							Let me know if you have any feedback/hate <a href="https://twitter.com/samhine_">@samhine_</a>, or want your predictions to be included.
+							</p>
+						</div>
+					  </div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s10 m10 offset-s1 offset-m1">
+					  <div class="card">
+						<div class="card-content">
 						  <p style="text-align: right;"><i>19/07/2019</i></p><br>
 						  <span class="card-title" name="article-title">UKLC Data Analysis - Does warding win games?</span>
 
 
 						  <span name="coauthors"><b>Coauthors: Kasey, Jack</b></span><br>
 						  <br><br>
-							<p>Over the past few weeks, I've had the fantastic opportunity to work with player and game data as part of my role with <a href="https://twitter.com/DiabolusEsports">Diabolus</a>. As fun as grinding out player statistics and tendencies is, I thought I'd take a step back and see what trends I could identify within the UKLC game data itself, and how well this matches up with what is commonly believed.
+							<p>Over the past few weeks, I've had the fantastic opportunity to work with player and game data as part as my role with <a href="https://twitter.com/DiabolusEsports">Diabolus</a>. As fun as grinding out player statistics and tendencies is, I thought I'd take a step back and see what trends I could identify within the UKLC game data itself, and how well this matches up with what is commonly believed.
 							Although there are many statistics to choose from, as a support main warding has more of an impact on my playstyle than most. Before getting into the nitty gritty of warding based stats, there are a few things of interest to note for the UKLC games so far.
 							<br><br>
 							<b>Blue/Red win rates</b>
@@ -856,7 +1276,7 @@
 						</div>
 					  </div>
 					</div>
-				  </div>
+				</div>
 
 
 				  <div class="row">
