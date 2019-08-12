@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84544636-2"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-84544636-2');
+		</script>
 		<!--Import Google Icon Font-->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!--Import materialize.css-->
@@ -8,6 +17,7 @@
 
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Articles</title>
 	</head>
 
 	<body>
@@ -26,6 +36,7 @@
 		  margin-right: auto;
 		  width: 50%;
 		}
+
 		</style>
 
 		<header>
@@ -44,7 +55,7 @@
 			   <li><a class="waves-effect" href="index">HOME</a></li>
 			   <li><a class="waves-effect" href="about">ABOUT</a></li>
 			   <li><a class="waves-effect" href="projects">PROJECTS</a></li>
-			   <li><a class="waves-effect" href="https://github.com/constantlyconfused/">GIT</a></li>
+			   <li><a class="waves-effect" href="https://github.com/u1615413/">GIT</a></li>
 			   <li><a class="waves-effect" href="https://www.linkedin.com/in/samuel-hine-07828113a/">LINKEDIN</a></li>
 			</ul>
 		</header>
@@ -55,6 +66,426 @@
 				<!--Parallax picture frame-->
 				<div class="parallax-container">
 					<div class="parallax"><img src="images/esiheader.jpg" style="bottom: 300px;"></div>
+				</div>
+
+				<div class="row">
+					<div class="col s10 m10 offset-s1 offset-m1">
+					  <div class="card">
+						<div class="card-content">
+						  <p style="text-align: right;"><i>23/07/2019</i></p><br>
+						  <span class="card-title" name="article-title">Who has the biggest brain in the <a href="https://uklc.lvp.global/">UKLC</a>?</span>
+							<span name="coauthors"><i>Apart from me, of course...</i></span><br>
+						  <br><br>
+							<p>
+							At the start of the summer split, a few people took to twitter to express their perceived rankings of teams before the games had started. Here, we'll take a look at these rankings, their differences to the current score table, and the metrics we can use measure their "correctness".
+							<br><br>
+							<b>The Problem</b>
+							<br>
+							We have a table of predictions (specifically 9 UKLC teams) who's order determines their performance rankings. We'd like to generate a robust metric which can measure the "wrongness" of a table of predictions compared to their true value. In other areas on statistics, performance metrics are usually based on their "distance" from the true values (where distance can be defined in a number of ways), and are useful for the training/analysis of models, such as neural networks and other areas of machine learning. In our case, we're not so much worried about using a metric to train a model, just to find out who's been the "most correct" so far in their initial rankings.
+							<br><br>
+							<b>The Data</b>
+							<br>
+							After searching Twitter, I managed to wrangle 5 tier lists which users had put out, those users being Aux (<a href="https://twitter.com/AuxCasts/status/1145065812006449152/photo/1">@AuxCasts</a>), Crane (<a href="https://twitter.com/CraneLoL/status/1143594871518846976/photo/2">@CraneLoL</a>), Viggo (<a href="https://twitter.com/ViggoEdits/status/1144349586796032005/photo/1">@ViggoEdits</a>), Snuggli (<a href="https://twitter.com/Snuggli_/status/1144698061433782274">@Snuggli_</a>) and Royal (<a href="https://twitter.com/royalwinsmid/status/1143934789537472512">@royalwinsmid</a>). These are the tier lists I'll be using for my analysis.
+							All 5 of their predictions can be found below;
+							<div class="row center">
+						    <div class="col s12">
+						      <ul class="tabs">
+						        <li class="tab col"><a class="active" href="#test1">Aux</a></li>
+						        <li class="tab col"><a href="#test2">Crane</a></li>
+						        <li class="tab col"><a href="#test3">Viggo</a></li>
+						        <li class="tab col"><a href="#test4">Snuggli</a></li>
+										<li class="tab col"><a href="#test5">Royal</a></li>
+						      </ul>
+						    </div>
+						    <div id="test1" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>MNM</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>XL</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						    <div id="test2" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>XL</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>MNM</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						    <div id="test3" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>XL</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>MNM</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						    <div id="test4" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>FNC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>XL</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>MNM</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>BRG</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>ENC</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>PHL</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>NVE</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+								<div id="test5" class="col s12">
+									<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th>Position</th>
+						              <th>Team</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>1</td>
+						            <td>ENC</td>
+						          </tr>
+						          <tr>
+						            <td>2</td>
+						            <td>BRG</td>
+						          </tr>
+						          <tr>
+						            <td>3</td>
+						            <td>XL</td>
+						          </tr>
+											<tr>
+						            <td>4</td>
+						            <td>PHE</td>
+						          </tr>
+											<tr>
+						            <td>5</td>
+						            <td>DMS</td>
+						          </tr>
+											<tr>
+						            <td>6</td>
+						            <td>NVE</td>
+						          </tr>
+											<tr>
+						            <td>7</td>
+						            <td>FNC</td>
+						          </tr>
+											<tr>
+						            <td>8</td>
+						            <td>DBL</td>
+						          </tr>
+											<tr>
+						            <td>9</td>
+						            <td>MNM</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+						  </div>
+
+							<br><br>
+							<b>The Method</b>
+							<br>
+							There are a few ideas I have personally for how this could be approached. The first (and most obvious) approach would be calculate the <i>sum of differences</i> for each of the prediction tables compared to the current true table. So, if someone was completely correct in their predictions but 1st and 2nd were switched, their score would be 2, since their 1st place prediction was 1 slot away, as well as their 2nd place prediction. One could simply divide this by 2 (which I'd imagine would seem more sensible in most peoples head), so I'll apply this transformation at the end.
+							<br>
+							The second method that comes to mind is calculating the amount of "switches" required for a predictions table for it to match the current true table. So, for example, if the rankings `1, 2, 3, 4` were correct, and someone had predicted `2, 4, 3, 1`, their score would be 2, since two switches (1 and 2, then 2 and 4) would render the table correct.
+							<br>
+							Each of these metrics have their downfalls. The second metric is great at telling us the complexity of "wrongness" of the predictions, but treats predictions such as `1, 3, 2, 4` and `4, 2, 3, 1` as equal when in most cases the second should be punished more. In this example, I'll choose to mainly focus on the first metric (which we'll now refer to as the "sum of differences") rather than the second.
+							<br><br>
+							<b>The Results</b>
+							<br>
+							For the results, I'll choose Aux's predictions and walk through the calculation of his score. Here are his predictions and the current true table side by side, with differences marked.
+							<div class="row center">
+						    <div class="col s12">
+									<table>
+						        <thead>
+						          <tr>
+						              <th>Team</th>
+													<th>Actual</th>
+						              <th>Predicted</th>
+													<th>Difference</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+						          <tr>
+						            <td>XL</td>
+						            <td>1</td>
+												<td>3</td>
+												<td>2</td>
+						          </tr>
+						          <tr>
+						            <td>FNC</td>
+						            <td>2</td>
+												<td>1</td>
+												<td>1</td>
+						          </tr>
+						          <tr>
+						            <td>MNM</td>
+						            <td>3</td>
+												<td>2</td>
+												<td>1</td>
+						          </tr>
+											<tr>
+						            <td>DBL</td>
+						            <td>4</td>
+												<td>6</td>
+												<td>2</td>
+						          </tr>
+						          <tr>
+						            <td>DMS</td>
+						            <td>5</td>
+												<td>7</td>
+												<td>2</td>
+						          </tr>
+						          <tr>
+						            <td>PHE</td>
+						            <td>6</td>
+												<td>5</td>
+												<td>1</td>
+						          </tr>
+											<tr>
+						            <td>BRG</td>
+						            <td>7</td>
+												<td>4</td>
+												<td>3</td>
+						          </tr>
+						          <tr>
+						            <td>ENC</td>
+						            <td>8</td>
+												<td>8</td>
+												<td>0</td>
+						          </tr>
+						          <tr>
+						            <td>NVE</td>
+						            <td>9</td>
+												<td>9</td>
+												<td>0</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+							</div>
+							<br>
+						  Starting with the first prediction, we find the distance to the matching team in the true table, in this case 2. <br>
+						  For the second prediction, this distance is 1. <br>
+						  For the third, 1 and so on... <br>
+							<br>
+ 							In the end Aux's differences total 12, which means his final score is 6.
+							<br>
+ 							We can apply the same metric to the other 4 predictions table which give the resultant scores;
+							<div class="row center">
+						    <div class="col s12">
+									<table>
+						        <thead>
+						          <tr>
+						              <th>User</th>
+													<th>Score</th>
+						          </tr>
+						        </thead>
+
+						        <tbody>
+											<tr>
+						            <td>Viggo</td>
+						            <td>5</td>
+						          </tr>
+						          <tr>
+						            <td>Aux</td>
+						            <td>6</td>
+						          </tr>
+						          <tr>
+						            <td>Crane</td>
+						            <td>7</td>
+						          </tr>
+											<tr>
+						            <td>Snuggli</td>
+						            <td>7</td>
+						          </tr>
+											<tr>
+						            <td>Royal</td>
+						            <td>17.5</td>
+						          </tr>
+						        </tbody>
+						      </table>
+								</div>
+							</div>
+
+							<br><br>
+							<b>Limitations and Extensions</b>
+							<br>
+							An obvious limitation is that in actuality, the bottom 3 teams all sit at 0 points. This means that the difference calculation for these three teams is a little skewed in favour of those guessed the bottom teams correctly. This should simply be noted, I'll probably come back to this at the end of the season when the point table is more distributed, and more concerete assumptions about brain sizes can be made.
+							<br>
+							There are a few extensions I can think of, mainly involving weightings. For example, wrong guesses towards the top of table could have more of an impact on score than wrong guesses towards the bottom.
+							Subjectively, switching 1st and 2nd is a lot more meaningful than 7th and 8th. Also, weightings on how <i>close</i> two teams are together (in terms of points). If Team A trials Team B by 1 point, and Team C trials Team B by 20 points, mistaking their positions should have different levels of meanings.
+							<br><br>
+							I hope you enjoyed this (somewhat short) article.
+							<br>
+							Let me know if you have any feedback/hate <a href="https://twitter.com/samhine_">@samhine_</a>, or want your predictions to be included.
+							</p>
+						</div>
+					  </div>
+					</div>
 				</div>
 
 				<div class="row">
@@ -72,25 +503,31 @@
 							<br><br>
 							<b>Blue/Red win rates</b>
 							<br>
-							For the 24 games that have been played in the UKLC (up to Week 4), only 3** games have featured a blue side victory. This means teams placed on red side have a 81.25% chance of winning*. This is very much not in line with general SoloQ statistics - where <a href="https://www.leagueofgraphs.com/rankings/blue-vs-red/na">blue side only has a slightly advantageous 51.8% win rate</a>.
+							For the 24 games that have been played in the UKLC (up to Week 4), only 9 games have featured a blue side victory. This means teams placed on red side have a 62.50% chance of winning*. This isn't so much in line with general SoloQ statistics - where <a href="https://www.leagueofgraphs.com/rankings/blue-vs-red/na">blue side has a slightly advantageous ~52% win rate</a>.
 							<br><br>
 							But where does this difference come from in SoloQ? I've recruited the help of a couple of big brains from <a href="https://twitter.com/DiabolusEsports">Diabolus</a> to help me explain some of the more in-depth game knowledge. He's my long time esports partner Jack (<a href="https://twitter.com/DBL_Coach">@DBL_Coach</a>) explaining this difference in win rate, and why it occurs.
 							<blockquote>
-					      Hi my name is jack and I have a big brain yadda yadda
+								Generally speaking, blue is the historically stronger side. It's been notoriously strong in pro play because of first pick value, but also because of the the map-state which is what affects the solo queue winrate. What I'm alluding to here is specifically the way botlane is shaped. The tri brush gives very easy access to both dragon and the river, but also gives the jungler two ganks paths to bot. This results in an easier enforcement of what most players understand as 'better not wins'. There's several other factors however the ease of ganks and movement around blueside bottom lane is what stands out when you really conceptualise the map.
 					    </blockquote>
 							Although interesting, since the SoloQ statistics are so balanced, I will choose to discard this as a consideration within the analysis.
 							<br><br>
 							<b>Other considerations</b>
 							<br>
-							When analysing whether higher ward placement rates are conducive to winning games, we must also consider to converse case - "do teams ward more when they are winning?". Unfortunately, timeline data is not available for UKLC games so further investigation to the rate of ward placements after some winning indicator (such as gold lead) is not possible. So, this possibility is just a factor to consider throughout. It is also very strange to consider a univariate analysis (that is, only focusing on one variable) for a game as complicated as League of Legends since there are obviously many co-dependent variables within a game instance which contribute to the victory or defeat of a team. Within trying to be to political, this is also a <a href="https://journals.sagepub.com/doi/pdf/10.1177/1464884915593234">common problem</a> in many attention grabbing news headlines, where journalists tend to focus purely on one statistic and treat it as the governing factor without considering a multivariate analysis. <br>
-							In this case, I'll simply acknowledge that the consideration of <i>only</i> wards in a game may be ignorant, but for explorations sake it's still a worthwhile endeavor.
+							When analysing whether higher ward placement rates are conducive to winning games, we must also consider to converse case - "do teams ward more when they are winning?". Unfortunately, timeline data is not available for UKLC games so further investigation to the rate of ward placements after some winning indicator (such as gold lead) is not possible. So, this possibility is just a factor to consider throughout. It is also very strange to consider a univariate analysis (that is, only focusing on one variable) for a game as complicated as League of Legends, since there are obviously many co-dependent variables within a game instance which contribute to the victory or defeat of a team. Without trying to be to political, this is also a <a href="https://journals.sagepub.com/doi/pdf/10.1177/1464884915593234">common problem</a> in many attention grabbing news headlines, where journalists tend to focus purely on one statistic and treat it as the governing factor without considering a multivariate analysis. <br>
+							In this case, I'll simply acknowledge that the consideration of <i>only</i> wards in a game may be ignorant, but for exploration's sake it's still a worthwhile endeavor.
 							</p>
 							<br>
 							<b>What is warding?</b>
 							<br>
-							For the few readers who aren't up to scratch on their League of Legends knowledge, I've recruited Kasey (<a href="https://twitter.com/_WEEXIAO">@_WEEXIAO</a>) to tell us more about warding, and why it's important.
+							For the few readers who aren't up to scratch on their League of Legends knowledge, I've got Kasey (<a href="https://twitter.com/_WEEXIAO">@_WEEXIAO</a>) to tell us more about warding, and why it's important.
 							<blockquote>
-					      Hi my name is kasey and I have a big brain yadda yadda
+								In its most fundamental form, warding is the control of opportunity in League of Legends. Placing a ward lessens the fog of war on the map for your team, and thus increases your potential knowledge over map circumstances as it relates to the enemy team and neutral objectives. For competitive teamplay, there are two main benefits that warding provides for your team:
+								<br>
+								    1. Positional advantages
+								<br>
+								    2. Informational Advantage
+								<br>
+								The two forms of advantages that warding provides are not mutually exclusive - on the other hand, they tie into each other. An easy way to think of it would be micro information (positioning and etc) and macro information (knowledge that influences decision making), with the two tying into another. As a whole, the reason why warding is important is simple: warding provides details about the game state, which increases a team's sense of agency.
 					    </blockquote>
 							<b>Approach</b>
 							<br>
@@ -110,40 +547,710 @@
 							<br><br>
 							<b>Summary</b>
 							<br>
-							There's a reason for my cautious language use throughout this article, usually making claims in the statistical world requires modelling, and performance analysis thereof. Since we only have 40 data points (20 games) any modelling on a scatter plot as varied as the above is likely not to render any useful result. But, informed speculation is still fun.
+							There's a reason for my cautious language use throughout this article, usually making claims in the statistical world requires modelling, and performance analysis thereof. Since we only have 48 data points (24 games) any modelling on a scatter plot as varied as the above is likely not to render any useful result. But, informed speculation is still fun.
 							<br><br>
-							Some interesting notes; **
+							Some interesting notes;
 							<ul style="list-style-type:circle;">
-							<li> <b>·</b> The highest warding rate of any game was achieved by Diabolus against Enclave, the 11th match of the split (3.85 wards placed per minute against 2.97 from Enclave). </li>
-							<li> <b>·</b> The lowest warding rate of any game was "achieved" by MNM against Fnatic, the 15th match of the split (2.36 wards placed per minute against 3.32 from FNC). </li>
-							<li> <b>·</b> Out of the 16 games, only 5 were won by the team with the lower warding rate. </li>
-							<li> <b>·</b> The highest warding rate of any player was XL support KaSing against FNC (game 16) with 1.8 wards per minute. </li>
-							<li> <b>·</b> The lowest warding rate of any player was DBL jungler PFI against XL (game 6) with 0.2 wards per minute. </li>
+							<li> <b>·</b> The highest warding rate of any game was achieved by Excel against Fnatic, the 24th match of the split (4.46 wards placed per minute against 3.94 from FNC). </li>
+							<li> <b>·</b> The lowest warding rate of any game was "achieved" by Barrage against Phelan, the 18th match of the split (2.11 wards placed per minute against 3.04 from PHL). </li>
+							<li> <b>·</b> Out of the 24 games, only 8 were won by the team with the lower warding rate. </li>
+							<li> <b>·</b> The highest warding rate of any player was FNC support Prosfair against XL (game 24) with 2.01 wards per minute. </li>
+							<li> <b>·</b> The lowest warding rate of any player was NVE jungler Infinity against MNM (game 20) with 0.15 wards per minute. </li>
 							</ul>
 							<br>
-							Below are the full tables for match, team and individual breakdowns.
+							Below are the full tables for match, team and individual breakdowns;
 
 							<br>
 							<ul class="collapsible">
 						    <li>
 						      <div class="collapsible-header"><i class="material-icons">list</i>Match Breakdown</div>
-						      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						      <div class="collapsible-body">
+										<table class="highlight">
+											<thead>
+												<tr>
+											    <th class="tg-0lax">Match</th>
+											    <th class="tg-0lax">Team</th>
+											    <th class="tg-0lax">Wards Placed per Minute</th>
+											    <th class="tg-0lax">Wards Destroyed per Minute</th>
+											    <th class="tg-0lax">Win?</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">1</td>
+													<td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">2.59</td>
+											    <td class="tg-0lax">0.83</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">2.75</td>
+											    <td class="tg-0lax">1.00</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">2</td>
+													<td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">3.76</td>
+											    <td class="tg-0lax">1.49</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">3.74</td>
+											    <td class="tg-0lax">1.72</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">3</td>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">2.94</td>
+											    <td class="tg-0lax">1.35</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">3.24</td>
+											    <td class="tg-0lax">1.53</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">4</td>
+													<td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">3.16</td>
+											    <td class="tg-0lax">1.36</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">2.87</td>
+											    <td class="tg-0lax">1.03</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+												<tr>
+											    <td class="tg-0lax" rowspan="2">5</td>
+													<td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">3.35</td>
+											    <td class="tg-0lax">1.32</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">3.18</td>
+											    <td class="tg-0lax">1.35</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+												<tr>
+											    <td class="tg-0lax" rowspan="2">6</td>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.82</td>
+											    <td class="tg-0lax">0.96</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">2.82</td>
+											    <td class="tg-0lax">1.36</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">7</td>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">2.63</td>
+											    <td class="tg-0lax">1.03</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">2.51</td>
+											    <td class="tg-0lax">1.11</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+												<tr>
+											    <td class="tg-0lax" rowspan="2">8</td>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">3.23</td>
+											    <td class="tg-0lax">1.09</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">3.40</td>
+											    <td class="tg-0lax">1.31</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">9</td>
+													<td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">3.16</td>
+											    <td class="tg-0lax">0.75</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">2.97</td>
+											    <td class="tg-0lax">0.78</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">10</td>
+													<td class="tg-0lax">NVE</td>
+													<td class="tg-0lax">2.37</td>
+													<td class="tg-0lax">0.61</td>
+													<td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">2.85</td>
+											    <td class="tg-0lax">1.14</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">11</td>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">3.85</td>
+											    <td class="tg-0lax">1.63</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">2.97</td>
+											    <td class="tg-0lax">1.99</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">12</td>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">3.32</td>
+											    <td class="tg-0lax">1.37</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">3.34</td>
+											    <td class="tg-0lax">1.72</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">13</td>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">3.39</td>
+											    <td class="tg-0lax">0.82</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">3.62</td>
+											    <td class="tg-0lax">1.10</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">14</td>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">3.00</td>
+											    <td class="tg-0lax">0.89</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.59</td>
+											    <td class="tg-0lax">1.44</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">15</td>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">3.32</td>
+											    <td class="tg-0lax">1.20</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.36</td>
+											    <td class="tg-0lax">1.10</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">16</td>
+													<td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">3.26</td>
+											    <td class="tg-0lax">1.83</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">3.38</td>
+											    <td class="tg-0lax">1.69</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">17</td>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">2.59</td>
+											    <td class="tg-0lax">1.28</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">2.86</td>
+											    <td class="tg-0lax">1.64</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">18</td>
+													<td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">3.04</td>
+											    <td class="tg-0lax">0.82</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">2.11</td>
+											    <td class="tg-0lax">1.11</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">19</td>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">2.88</td>
+											    <td class="tg-0lax">1.41</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">2.79</td>
+											    <td class="tg-0lax">0.88</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">20</td>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.49</td>
+											    <td class="tg-0lax">1.20</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">2.83</td>
+											    <td class="tg-0lax">0.58</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">21</td>
+													<td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">3.73</td>
+											    <td class="tg-0lax">1.50</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">2.97</td>
+											    <td class="tg-0lax">1.29</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">22</td>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">2.87</td>
+											    <td class="tg-0lax">0.83</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.32</td>
+											    <td class="tg-0lax">1.17</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">23</td>
+													<td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">3.44</td>
+											    <td class="tg-0lax">1.44</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+													<td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.42</td>
+											    <td class="tg-0lax">1.02</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax" rowspan="2">24</td>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">3.94</td>
+											    <td class="tg-0lax">2.30</td>
+											    <td class="tg-0lax">TRUE</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">4.46</td>
+											    <td class="tg-0lax">1.84</td>
+											    <td class="tg-0lax">FALSE</td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header"><i class="material-icons">group</i>Team Breakdown</div>
-						      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						      <div class="collapsible-body">
+										<table class="tg highlight">
+											<thead>
+												<tr>
+											    <th class="tg-0lax">Team</th>
+											    <th class="tg-0lax">Average Wards Placed per minute</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">3.39</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">3.29</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">3.23</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">3.17</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">3.05</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">2.84</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">2.77</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">2.70</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">2.59</td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header"><i class="material-icons">person</i>Player Breakdown</div>
-						      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						      <div class="collapsible-body">
+										<table class="tg highlight">
+											<thead>
+												<tr>
+											    <th class="tg-0lax">Team</th>
+											    <th class="tg-0lax">Player</th>
+											    <th class="tg-0lax">Role</th>
+											    <th class="tg-0lax">Average Wards Placed per Minute</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">Prosfair</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">1.42</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Viggo</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">1.36</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">KaSing</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">1.35</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Heathen</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">1.17</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Visdom</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">1.13</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Propameal</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">1.03</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Raizins</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">0.91</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Fastlegged</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">0.84</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Munckizz</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.81</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Shogun</td>
+											    <td class="tg-0lax">Supp</td>
+											    <td class="tg-0lax">0.77</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Sof</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.63</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">Nji</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.62</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Taxer</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.61</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">PFI</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.60</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Kehvo</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.60</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Noltey</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.58</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Send0o</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.57</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Furuy</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.56</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">Shikari</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.55</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Batu</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.54</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Only Angel</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.54</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Chemera</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.54</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Kakan</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.51</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Diva</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.50</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Renghis</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.50</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Skude</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.49</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Infinity</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.49</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Xizz3l</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.49</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">DenVoksne</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.48</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Chibs</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.47</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">xMatty</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.44</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">PHL</td>
+											    <td class="tg-0lax">Achuu</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.44</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Hidon</td>
+											    <td class="tg-0lax">Jung</td>
+											    <td class="tg-0lax">0.43</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">3z3</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.41</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Special</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.41</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Zeiko</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.40</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">Ronaldo</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.38</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Brelia</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.38</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">FNC</td>
+											    <td class="tg-0lax">MagiFelix</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.36</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">XL</td>
+											    <td class="tg-0lax">Hjarnan</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.36</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DMS</td>
+											    <td class="tg-0lax">Vixen</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.35</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Jakamaka</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.34</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">ENC</td>
+											    <td class="tg-0lax">Beeley</td>
+											    <td class="tg-0lax">Mid</td>
+											    <td class="tg-0lax">0.34</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">MNM</td>
+											    <td class="tg-0lax">Yusa</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.34</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">DBL</td>
+											    <td class="tg-0lax">Dragdar</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.33</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">NVE</td>
+											    <td class="tg-0lax">Spark</td>
+											    <td class="tg-0lax">ADC</td>
+											    <td class="tg-0lax">0.28</td>
+											  </tr>
+											  <tr>
+											    <td class="tg-0lax">BRG</td>
+											    <td class="tg-0lax">Zhergoth</td>
+											    <td class="tg-0lax">Top</td>
+											    <td class="tg-0lax">0.27</td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
 						    </li>
 						  </ul>
 							<br>
 
-							So, I hope you learnt something about warding in the UKLC and perhaps something about the methods of data analytics.
+							So, I hope you learnt something about warding in the UKLC and perhaps something about the methods of data analytics. <br>
 							If you have any suggestions, comments or hate, feel free to tweet me <a href="https://twitter.com/samhine_">@samhine_</a>.
 							<br><br>
 							Until next time...
+							<br><br>
+							<i>Sources: <a href="https://twitter.com/LVPukLoL">LVP UK</a></i>
 						</div>
 					  </div>
 					</div>
@@ -178,7 +1285,7 @@
 						</div>
 					  </div>
 					</div>
-				  </div>
+				</div>
 
 
 				  <div class="row">
