@@ -15,6 +15,7 @@
 		<!--Import jQuery before materialize.js-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 		<script>
 			$(document).ready(function(){
 			  $('.parallax').parallax();
@@ -57,6 +58,204 @@
 				<!--Parallax picture frame-->
 				<div class="parallax-container">
 					<div class="parallax"><img src="images/esiheader.jpg" style="bottom: 300px;"></div>
+				</div>
+
+				<div class="row">
+					<div class="col s10 m10 offset-s1 offset-m1">
+					  <div class="card">
+						<div class="card-content">
+						  <p style="text-align: right;"><i>11/08/2019</i></p><br>
+						  <span class="card-title" name="article-title">Analysing champion matchups</span>
+							<span name="coauthors"><i>Who does better in lane, and what metric do we use to find out?</i></span><br>
+							<br>
+							<b>How can we be robust in our matchup analysis?</b>
+							<br>
+							An important part of climbing in League of Legends (or drafting for games in competitive leagues) is knowing how well champions counter one another. In general, you'd like each lane pick to be advantageous to you in some way, usually determined by the meta (or people's perception of the meta). I stumbled on a webpage from https://loldatascience.com which displays this information in the form of a heatmap for patch 9.9, which inspired me to approach this challenge. I can't claim this is an original idea, but since this hasn't been updated for a couple months, and the source code is hiding behind the webpage I thought I'd give a loose walkthrough of how a problem like this can be solved and the limitations of the things it finds.
+							<br><br>
+							<b id="thegoal">The goal</b>
+							<br>
+							The goal, simply, is to construct these heatmaps for a selection of champions within each lane. This means, for each game we find data for, we need to record lane matchups and some criteria to determine success within that lane (in this case, we'll stick to average gold lead at 10 mins, and victory status). After grabbing the data, we should have a table with the following columns - <code>Blue Side</code>, <code> Red Side</code>, <code> Gold Lead (for blue)</code>, <code> Win</code>, <code> Role</code>. This should give us everything we need to construct the heatmaps, but how do we get this data?
+							<br><br>
+							<b id="ourapproach">Our approach</b>
+							<br>
+							Ideally, we'd like this table to have around 100,000 entries for each role, which means the retrieval of around 100,000 games is required. The Riot API allows us to grab a player's last 100 games (although, not the data for these games, just the references to them). I'm going to use another endpoint (LEAGUE-V4) to find the summoner names of the highest ranked players in EUW, retrieve references to their last 100 games, and continue down the ladder until we reach 100,000 games or below Diamond I elo (for this patch), whichever comes first. There are some things we need to consider: two different players may have the same games within their match history - when storing the games we'll make sure the unique <code>gameId</code> is a primary key so duplicates can't be stored, also, the Riot API doesn't do a great job of telling us which role was played by which champion within a game; I'll employ the use of 3rd party modules to help me determine what the matchups for each game were. I'll also disregard any game that occured before July 31st, so we're only grabbing games from patch 9.15.
+
+							Before deciding to retrieve 100,000 pieces of game data (around 2.58 GB in size), we should first construct test scripts which process a few game instances to ensure all known error cases are handled, and that this endeavour is possible at all.
+							<br><br>
+							<b id="preliminaries">Preliminaries</b>
+							<br>
+							Assuming we have a game instance stored as <code>data.json</code> in the local directory, how can we extract the aforementioned columns we'd like to populate from this data? Once we've established how to do this for one game, we can iterate through the entire dataset to arrive at the final table. From the data we need only a few things the <code>gameId</code>, the champions that were played, the role of that champion, the respective gold of each champion at 10 minutes, and which team won. The Riot API splits "match data" and "match timeline data". We need the timeline data to find information about the gold, and also to determine roles using this 3rd party role identifier https://github.com/Canisback/roleML.
+							<pre style="background-color: #ebebeb;"><code class="prettyprint lang-python">
+# Load in the game data
+with open("data.json", "r") as f:
+  game_data = json.load(f)
+
+  # Match data is within game_data['match_data']
+  # Timeline data is within game_data['timeline_data']
+							</code></pre>
+							<br><br>
+							<u><i><em>The champions that were played</em></i></u>
+							<br>
+							Within the match data, a key <code>participants</code> gives us information about all players within a game, including a mapping between <code>participantId</code> and <code>championId</code>. We'll hold this information for later use. It should be noted that participant identities are per game only, and are used constantly as reference for a player throughout the match data.
+							<pre style="background-color: #ebebeb;"><code class="prettyprint lang-python">
+# Dictionaries for our information to be stored in
+part_champs = {}
+part_gold = {}
+
+# Find champions each participant (or "part") played
+for part in gamedata['match_data']['participants']:
+  part_champs.update({part['participantId'] : part['championId']})
+							</code></pre>
+							<br><br>
+							<u><i><em>The gold of each champion at 10 minutes</em></i></u>
+							<br>
+							There are "frames" within the timeline match data, which are equivalent to minutes within the game. In our case, we simply want to index the 10th minute of the game, and add the gold information to the above participant and champion information.
+							<pre style="background-color: #ebebeb;"><code class="prettyprint lang-python">
+# Find the gold for each participant at 10 minutes
+for part_id in range(1,11):
+  part_id = str(part_id)
+  # Grab the information for a participant at the 10 minute mark, which we can index for their gold information
+  info = gamedata['timeline_data']['frames'][9]['participantFrames'][frame_n]
+  part_gold.update({info['participantId'] : info['totalGold']})
+							</code></pre>
+							<br><br>
+							<u><i><em>The role of champions</em></i></u>
+							<br>
+							As previously mentioned, throwing the match and timeline data into <code>roleML</code> gives us a mapping of <code>participantId</code> and their role. These, again, and simply be appended to the above.
+							<pre style="background-color: #ebebeb;"><code class="prettyprint lang-python" >
+# RoleML gives us a mapping for each participant, and the role they played
+part_roles = roleml.predict(gamedata['match_data'], gamedata['timeline_data'])
+							</code></pre>
+							<br><br>
+							<u><i><em>Which team won</em></i></u>
+							<br>
+							<pre style="background-color: #ebebeb;"><code class="prettyprint lang-python">
+# Check if blue won
+win = True
+if gamedata['match_data']['teams'][0]['win']=='Fail':
+    win = False
+							</code></pre>
+							<br><br>
+							<u><i><em>Combining the above</em></i></u>
+							<br>
+							Since we now have all the information we need, and series of transforms is needed to construct rows of the table. We need to pair matchups (given to us by the role), calculate the gold difference (just a simple subtraction of red gold from blue gold), and throw all this information into a row as required. So, we have 3 things altogether, the mappings of a participant to the champion that played, the gold they had at 10 minutes, and their role. An example of these is shown below.
+							<pre style="background-color: #ebebeb;"><code class="prettyprint lang-python">
+part_champ = {
+  '1' : 54,
+  '2' : 23,
+  '3' : 98,
+     ...
+}
+
+part_gold = {
+  '1' : 4534,
+  '2' : 5423,
+  '3' : 8293,
+     ...
+}
+
+part_role = {
+  '1' : 'supp',
+  '2' : 'jung',
+  '3' : 'mid',
+     ...
+}
+							</code></pre>
+							So, to find matchups we simply need to find the two participants whose roles are 'top', two participants whose roles are 'mid', and so on. Then, we assign the champs they played, and the difference between their gold values to end up with a formatted input row like so.
+							<pre style="background-color: #ebebeb;"><code class="prettyprint lang-python">
+# Item is a "matchup item" and hold information about which two participants faced off against each other
+input_row = {'role' : item[0],
+             'blue' : get_champ_by_id(part_champs[item[1]]),
+             'red' : get_champ_by_id(part_champs[item[2]]),
+             'gold_diff' : part_gold[item[1]]-part_gold[item[2]],
+             'blue_win' : win}
+							</code></pre>
+							This will form the basis for the production of any graphics made using this data, since we now have clear information on champion matchups, the role they were placed in, and which champion had the gold advantage (and by how much) at 10 minutes.
+							<br><br>
+							<b id="gettingthedata">Getting the data</b>
+							<br>
+							As previously mentioned, to get all the game data we need we're going to iterate over the highest elo players within EUW, adding the games in their match history to our dataset subject to a few conditions: we don't already have this game in the dataset, the game lasted longer than 15 minutes, and the game occurred after patch 9.15 landed. On each iteration we'll check how many games we already have, or what elo of player we've reached, and stop if necessary.
+
+							Once we have all the game data objects, we simply need to pass it through the above parsing method (with some added error checking) and wait for the results. All in all, we retrieve about 75,000 games from the API, which takes about 6 hours to process.
+							<br><br>
+							<b id="initialanalysis">Initial Analysis</b>
+							<br>
+							Now we have the data, we can put some thought into how it should be handled. Ideally, when representing matchups, we want to cut out any matchup which has less than around 50 data points, since we can deem this as non-representative. We'll aggregate matchup stats by simply taking the <i>mean gold difference</i> between them. As an example, here is what happens when we drag the data into R (which I find much easier to graph in), perform our aggregates and produce a heatmap of the results. The amounts within the tiles indicate the size of the dataset the aggregate was formed from (and hence should be treated as a "trust factor" in how accurate that measurement is).
+
+							<img class="align center size-full wp-image-1604" src="https://diabolus-esports.com/wp-content/uploads/2019/08/top_matchup.png" alt="" />
+							<br>
+
+							This graphic should be interpreted like so, choose a champion on the blue side, and follow across through the various matchups. The more blue the tile, the more dominant the blue side champion is in this matchup, and vice versa. We can see a couple of things, matchup information is "mirrored" across the bottom-left to top-right diagonal (as expected), and champions such as Riven and Renekton have a much higher prevelence in SoloQ than any other champion in top lane. For future graphs, I'll include all data for matchups, even if the datapoint count is below the required threshold.
+							Although gold ahead at 10 minutes is a relatively good indicator to see which champion won lane, there are a couple of other factors such as CS at 10 minutes, and EXP at 10 minutes which also give some indication to how the matchup is going. An appropriate combination of all three would be much more indicative of the matchup than just one alone, although can cause some problems (which I'll describe later).
+
+							<br><br>
+							<b id="percentaheadratingpar">Percent Ahead Rating (PAR)</b>
+							<br>
+							Here, I'll outline my own combination of these coefficients to best represent which champion a matchup favours. In principle, it is described as;
+							<br>
+							<span class="center">PAR = G<sub>p</sub> * W<sub>g</sub> + X<sub>p</sub> * W<sub>x</sub> + C<sub>p</sub> * W<sub>c</sub></span>
+							<br>
+							Where, G<sub>p</sub> represents the percentage more GOLD that the blue side champion has over the red side champion (X<sub>p</sub> for EXP, and C<sub>p</sub> for CS).</em> W<sub>g</sub> are the associated weightings to these percentages, allowing us to control the importance that gold, EXP or CS lead has on a matchup. These three weightings must form a statistical measure (i.e. be in the range 0-1 and sum to 1).
+							<br>
+							Here's an example of a matchup, some sample weightings, and the resultant PAR for the matchup.
+							<br>
+							<table class="highlight centered responsive-table" style="width:70%; margin-left: auto; margin-right: auto;">
+							  <thead>
+									<tr>
+							    <th >Blue</th>
+							    <th >Red</th>
+							    <th >Blue Gold</th>
+							    <th >Red Gold</th>
+							    <th >Blue XP</th>
+							    <th >Red XP</th>
+							    <th >Blue CS</th>
+							    <th >Red CS</th>
+									</tr>
+							  </thead>
+								<tbody>
+							  	<tr>
+							    <td >Jax</td>
+							    <td >Vayne</td>
+							    <td >2815</td>
+							    <td >3434</td>
+							    <td >3823</td>
+							    <td >3637</td>
+							    <td >57</td>
+							    <td >67</td>
+							  	</tr>
+								</tbody>
+							</table>
+							<br>
+							G<sub>p</sub> = (2815/3434) x 100 - 100 = -18.0% <br>
+							X<sub>p</sub> = (3823/3637) x 100 - 100 = 5.1% <br>
+							C<sub>p</sub> = (57/67) x 100 - 100 = -14.9% <br>
+							<br>
+							W<sub>g</sub> = 0.6 <br>
+							W<sub>x</sub> = 0.1 <br>
+							W<sub>c</sub> = 0.3 <br>
+							<br>
+							PAR = -5.82% <br>
+
+							The above implies that in a laning matchup between Jax and Vayne, Vayne "performs around 6% better" than Jax before 10 minutes. Obviously, the above may not be completely representative of the matchup, but luckily we have around 300,000 individual matchups to average over.
+							<br><br>
+							<b id="parheatmaps">PAR Heatmaps</b>
+							<br>
+							Below are selected top lane and mid lane matchups, and their resultant PAR heatmaps with the above weightings.
+							<div style="display: block;">
+							<img  style="display: inline-block;" src="https://diabolus-esports.com/wp-content/uploads/2019/08/TOP_PAR.png" alt="" width="600" height="558" class="aligncenter size-full wp-image-1678" />
+							<img   style="display: inline-block;"src="https://diabolus-esports.com/wp-content/uploads/2019/08/MID_PAR.png" alt="" width="600" height="558" class="aligncenter size-full wp-image-1677" />
+							</div>
+							<br><br>
+							<b id="drawbacks">Drawbacks</b>
+							<br>
+							The drawbacks in this model mostly stem from the combination of the variables (XP, CS and Gold) within our rating. Through modelling our data, we can find interesting trends of contributions by these variables especially when we filter by each role. For example, we don't expect CS to have an overbearing significance in gold lead or lane dominance in support matchups, therefore the weightings used within the PAR calculations should be changed to reflect that. Generally, both XP and CS are highly statistically significant in their prediction of a players gold at 10 minutes. In midlane however, I found that (over ~30,000 datapoints) a higher CS implies a lesser gold lead for equal XP, perhaps being a result of early kills leading to loss of farm from recalls.
+							<br><br>
+							I hope you enjoyed this (quite long and technical) article!
+							<br>
+							Let me know if you have any feedback, suggestions or hate <a href="https://twitter.com/samhine_">@samhine_</a>.
+						</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="row">
