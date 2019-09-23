@@ -28,9 +28,23 @@
 			  $('.parallax').parallax();
 			});
 		</script>
+		<script>
+			(function($) {
+				$(function() {
+
+					$('.my-btn').sideNav({
+					edge: 'left', // Choose the horizontal origin
+					closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+					draggable: true // Choose whether you can drag to open on touch screens
+					});
+
+				}); // end of document ready
+			})(jQuery); // end of jQuery name space
+		</script>
 		<header>
 			<!--Side navigation-->
-			<ul id="nav-bar" class="side-nav fixed">
+			<a id="show-nav-btn" href="#" data-activates="slide-out" class="my-btn btn-floating btn-large waves-effect waves-light amber" style="margin: 20px;"><i class="material-icons">add</i></a>
+			<ul id="slide-out" class="side-nav fixed">
 			   <li>
 				  <div class="user-view">
 					 <div class="background" style="background-color: grey;"></div>
@@ -138,6 +152,9 @@
 @media screen and (min-width: 992px){
 	.wrapper {
 		padding-left: 300px;
+	}
+	#show-nav-btn{
+		position: fixed;
 	}
 }
 </style>
