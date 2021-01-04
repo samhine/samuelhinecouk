@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+
+    <title>Zenith | Documentation by Samuel Hine</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/font-awesome-4.3.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/stroke.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="js/syntax-highlighter/styles/shCore.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="js/syntax-highlighter/styles/shThemeRDark.css"
+      media="all"
+    />
+
+    <!-- CUSTOM -->
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <script>
+      var mybutton = document.getElementById("myBtn");
+      window.onscroll = function () {
+        scrollFunction();
+      };
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 1000 ||
+          document.documentElement.scrollTop > 1000
+        ) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+      function topFunction() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("#mode").addEventListener("click", () => {
+          document.querySelector("html").classList.toggle("dark");
+        });
+      });
+    </script>
+
+    <div id="wrapper">
+      <div id="mode">
+        <div class="dark">
+          <svg aria-hidden="true" viewBox="0 0 512 512">
+            <title>lightmode</title>
+            <path
+              fill="currentColor"
+              d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"
+            ></path>
+          </svg>
+        </div>
+        <div class="light">
+          <svg aria-hidden="true" viewBox="0 0 512 512">
+            <title>darkmode</title>
+            <path
+              fill="currentColor"
+              d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="container">
+        <section id="top" class="section docs-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="big-title text-center">
+                <h1>Zenith</h1>
+                <p class="lead">
+                  Interact with the Riot API through Google Sheets.
+                </p>
+              </div>
+              <!-- end title -->
+            </div>
+            <!-- end 12 -->
+          </div>
+          <!-- end row -->
+
+          <hr />
+        </section>
+        <!-- end section -->
+
+        <div class="row">
+          <div class="col-md-3">
+            <nav
+              class="docs-sidebar"
+              data-spy="affix"
+              data-offset-top="300"
+              data-offset-bottom="200"
+              role="navigation"
+            >
+              <ul class="nav">
+                <li><a href="#line1">Getting Started</a></li>
+                <li><a href="#line2">Methods</a></li>
+                <li><a href="#line3">Best Practices</a></li>
+                <li><a href="#line4">Contacts</a></li>
+                <li><a href="#line5">Privacy Policy</a></li>
+                <li><a href="#line6">Terms of Service</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-md-9">
+            <section class="welcome">
+              <div class="row">
+                <div class="col-md-12 left-align">
+                  <h2 class="dark-text">
+                    Introduction
+                    <hr />
+                  </h2>
+                  <div class="row">
+                    <div class="col-md-12 full">
+                      <div>
+                        <p>
+                          Welcome to Zenith. This add-on aims to bridge the gap
+                          between League of Legends analysts and the Riot API.
+                          Classically, analysts (or data analysts) will collect
+                          data into CSV from Python/R/Java and then import this
+                          into sheets. Zenith aims to cut out the middle man,
+                          allowing API requests to be made directly from Sheets.
+                          <br />
+                          This documentation may be out of date, to ensure you
+                          are viewing the very latest technical documentation,
+                          visit
+                          <a href="https://github.com/samhine/zenith-docs"
+                            >https://github.com/samhine/zenith-docs</a
+                          >.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end row -->
+                </div>
+              </div>
+            </section>
+
+            <section id="line1" class="section">
+              <div class="row">
+                <div class="col-md-12 left-align">
+                  <h2 class="dark-text">
+                    Getting Started
+                    <hr />
+                  </h2>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+
+              <div class="row">
+                <div class="col-md-12">
+                  <p>
+                    To get started you will need to create a
+                    <code>Credentials</code> tab within your sheet to which
+                    Zenith is connected.
+                    <br />
+                    Then place;
+                    <br />
+                    - your chosen region/platform in cell <strong>A2</strong>.
+                    You can find a list of supported regions
+                    <a
+                      href="https://developer.riotgames.com/docs/lol#_routing-values"
+                      >here</a
+                    >.
+                    <br />
+                    - your Riot API key in cell <strong>B2</strong>. Zenith
+                    stores your API key to be sent off with your requests - it
+                    is <strong>never</strong> stored persistently.
+                    <br />
+                    You may change either of these values at any time.
+                  </p>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+            </section>
+            <!-- end section -->
+
+            <section id="line2" class="section">
+              <div class="row">
+                <div class="col-md-12 left-align">
+                  <h2 class="dark-text">
+                    Methods
+                    <hr />
+                  </h2>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+
+              <p>
+                Zenith adds custom functions to your sheets environment. They
+                behave similarly to built in sheets functions such as
+                <code>=SUM()</code> or <code>=VLOOKUP()</code>. Documentation
+                for all user facing Zenith methods are included in tooltips that
+                appear while typing methods.
+              </p>
+              <h2 id="getaccountidbysummoner-summoner_name-">
+                getAccountIdBySummoner(summoner_name)
+              </h2>
+              <p>Retrieves account ID for a given summoner name.</p>
+              <p><strong>Parameters</strong></p>
+              <blockquote>
+                <p>
+                  <strong>summoner_name</strong>: <code>text</code>, Name of
+                  summmoner.
+                </p>
+              </blockquote>
+              <p>
+                <strong>Returns</strong>: <code>text</code>, Account ID for
+                provided summoner name.
+              </p>
+              <h2 id="getsummonerbyaccountid-account_id-">
+                getSummonerByAccountId(account_id)
+              </h2>
+              <p>Retrieves summmoner name for a given account ID.</p>
+              <p><strong>Parameters</strong></p>
+              <blockquote>
+                <p>
+                  <strong>account_id</strong>: <code>text</code>, Account ID of
+                  summmoner.
+                </p>
+              </blockquote>
+              <p>
+                <strong>Returns</strong>: <code>text</code>, Summoner name for
+                provided account ID.
+              </p>
+              <h2 id="getchampionlistformatch-match_id-side-">
+                getChampionListForMatch(match_id, side)
+              </h2>
+              <p>
+                Champion list for given match. If side is undefined, all
+                champions are returned with blue side champions listed first.
+              </p>
+              <p><strong>Parameters</strong></p>
+              <blockquote>
+                <p><strong>match_id</strong>: <code>text</code>, ID of match</p>
+                <p>
+                  <strong>side</strong>: <code>text | undefined</code>, Side for
+                  which champions will be returned (&quot;blue&quot; or
+                  &quot;red&quot;)
+                </p>
+              </blockquote>
+              <p>
+                <strong>Returns</strong>: <code>range</code>, List of champions
+                for given match.
+              </p>
+              <h2 id="getsummonerlistformatch-match_id-side-">
+                getSummonerListForMatch(match_id, side)
+              </h2>
+              <p>
+                Summoner list for given match. If side is undefined, all
+                summoners are returned with blue side summoners listed first.
+                Note, this method will NOT work for custom games since indentity
+                information is not given by the API.
+              </p>
+              <p><strong>Parameters</strong></p>
+              <blockquote>
+                <p><strong>match_id</strong>: <code>text</code>, ID of match</p>
+                <p>
+                  <strong>side</strong>: <code>text | undefined</code>, Side for
+                  which summoners will be returned (&quot;blue&quot; or
+                  &quot;red&quot;)
+                </p>
+              </blockquote>
+              <p>
+                <strong>Returns</strong>: <code>range</code>, List of summoners
+                for given match.
+              </p>
+              <h2 id="getstatforchampion-match_id-champion_name-statistic-">
+                getStatForChampion(match_id, champion_name, statistic)
+              </h2>
+              <p>
+                Parses match for chosen statistic and returns it for given
+                champion.
+              </p>
+              <p><strong>Parameters</strong></p>
+              <blockquote>
+                <p>
+                  <strong>match_id</strong>: <code>text</code>, Parses match for
+                  chosen statistic and returns it for given champion.
+                </p>
+                <p>
+                  <strong>champion_name</strong>: <code>text</code>, Parses
+                  match for chosen statistic and returns it for given champion.
+                </p>
+                <p>
+                  <strong>statistic</strong>: <code>text</code>, Parses match
+                  for chosen statistic and returns it for given champion.
+                </p>
+              </blockquote>
+              <p>
+                <strong>Returns</strong>: <code>text</code>, Statistic for
+                champion in provided match.
+              </p>
+              <h2 id="getstatforsummoner-match_id-summoner_name-statistic-">
+                getStatForSummoner(match_id, summoner_name, statistic)
+              </h2>
+              <p>
+                Parses match for chosen statistic and returns it for given
+                summoner.
+              </p>
+              <p><strong>Parameters</strong></p>
+              <blockquote>
+                <p>
+                  <strong>match_id</strong>: <code>text</code>, Parses match for
+                  chosen statistic and returns it for given summoner.
+                </p>
+                <p>
+                  <strong>summoner_name</strong>: <code>text</code>, Parses
+                  match for chosen statistic and returns it for given summoner.
+                </p>
+                <p>
+                  <strong>statistic</strong>: <code>text</code>, Parses match
+                  for chosen statistic and returns it for given summoner.
+                </p>
+              </blockquote>
+              <p>
+                <strong>Returns</strong>: <code>text</code>, Statistic for
+                summoner in provided match.
+              </p>
+
+              <h1 id="avalible-statistics">Avalible Statistics</h1>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Statistic</th>
+                    <th>Description</th>
+                    <th>Timeline Available?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>gold</td>
+                    <td>Gold for a champion/summoner</td>
+                    <td>Yes.</td>
+                  </tr>
+                  <tr>
+                    <td>cs</td>
+                    <td>
+                      Minions + Jungle minions killed for a champion/summoner
+                    </td>
+                    <td>Yes.</td>
+                  </tr>
+                  <tr>
+                    <td>kills</td>
+                    <td>End game kills for a champion/summoner</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>deaths</td>
+                    <td>End game deaths for a champion/summoner</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>assists</td>
+                    <td>End game assists for a champion/summoner</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>goldPerMin</td>
+                    <td>
+                      (total gold / game duration in minutes) for a
+                      champion/summoner.
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>csPerMin</td>
+                    <td>
+                      (total cs / game duration in minutes) for a
+                      champion/summoner.
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>damage</td>
+                    <td>
+                      End game damage dealt to enemy champions for a
+                      champion/summmoner.
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>damagePerMin</td>
+                    <td>
+                      (total damage / game duration in minutes) for a
+                      champion/summoner.
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>kda</td>
+                    <td>
+                      &quot;kills/deaths/assists&quot; for a champion/summoner.
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>kdr</td>
+                    <td>(kills + assists / deaths) for a champion/summoner.</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+            <!-- end section -->
+
+            <section id="line3" class="section">
+              <div class="row">
+                <div class="col-md-12 left-align">
+                  <h2 class="dark-text">
+                    Best Practices
+                    <hr />
+                  </h2>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+
+              <p>
+                Although rate limiting is built in to Zenith, there are some
+                ways <strong>you</strong> can limit the chance of throttling
+                your project;
+                <br />
+                - Once you have gathered data that need not change (or make
+                extra calls to Zenith), copy this data and
+                <strong>paste as value</strong>. This prevents cells from
+                spamming Zenith and consequently the API when that data doesn't
+                actually need to be updated.
+                <br />
+                - Limit cell dependancies. This means that you have as few cells
+                as possible waiting for another cell to load. Pass by value
+                wherever possible, rather than by cell.
+              </p>
+            </section>
+            <!-- end section -->
+
+            <section id="line4" class="section">
+              <div class="row">
+                <div class="col-md-12 left-align">
+                  <h2 class="dark-text">
+                    Contacts
+                    <hr />
+                  </h2>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+
+              <p>
+              - Sam Hine <br>
+              <blockquote>
+                - <a href="http://twitter.com/samhine">twitter.com/samhine</a> <br>
+                - zenith.app (at) gmail.com
+              </blockquote>
+              <br>
+              - Chris Georgiou <br>
+              </p>
+              <!-- end row -->
+            </section>
+            <!-- end section -->
+
+            <section id="line5" class="section">
+              <div class="row">
+                <div class="col-md-12 left-align">
+                  <h2 class="dark-text">
+                    Privacy Policy
+                    <hr />
+                  </h2>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+
+              <p>Last updated: December 31, 2020</p>
+              <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+              <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the <a href="https://www.privacypolicies.com/privacy-policy-generator/" target="_blank">Privacy Policy Generator</a>.</p>
+              <h1>Interpretation and Definitions</h1>
+              <h2>Interpretation</h2>
+              <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+              <h2>Definitions</h2>
+              <p>For the purposes of this Privacy Policy:</p>
+              <ul>
+              <li>
+              <p><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</p>
+              </li>
+              <li>
+              <p><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where &quot;control&quot; means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</p>
+              </li>
+              <li>
+              <p><strong>Application</strong> means the software program provided by the Company downloaded by You on any electronic device, named Zenith</p>
+              </li>
+              <li>
+              <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to Zenith.</p>
+              </li>
+              <li>
+              <p><strong>Country</strong> refers to: United Kingdom</p>
+              </li>
+              <li>
+              <p><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</p>
+              </li>
+              <li>
+              <p><strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.</p>
+              </li>
+              <li>
+              <p><strong>Service</strong> refers to the Application.</p>
+              </li>
+              <li>
+              <p><strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.</p>
+              </li>
+              <li>
+              <p><strong>Third-party Social Media Service</strong> refers to any website or any social network website through which a User can log in or create an account to use the Service.</p>
+              </li>
+              <li>
+              <p><strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).</p>
+              </li>
+              <li>
+              <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
+              </li>
+              </ul>
+              <h1>Collecting and Using Your Personal Data</h1>
+              <h2>Types of Data Collected</h2>
+              <h3>Personal Data</h3>
+              <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
+              <ul>
+              <li>
+              <p>Email address</p>
+              </li>
+              <li>
+              <p>Usage Data</p>
+              </li>
+              </ul>
+              <h3>Usage Data</h3>
+              <p>Usage Data is collected automatically when using the Service.</p>
+              <p>Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+              <p>When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.</p>
+              <p>We may also collect information that Your browser sends whenever You visit our Service or when You access the Service by or through a mobile device.</p>
+              <h2>Use of Your Personal Data</h2>
+              <p>The Company may use Personal Data for the following purposes:</p>
+              <ul>
+              <li>
+              <p><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</p>
+              </li>
+              <li>
+              <p><strong>To manage Your Account:</strong> to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.</p>
+              </li>
+              <li>
+              <p><strong>For the performance of a contract:</strong> the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.</p>
+              </li>
+              <li>
+              <p><strong>To contact You:</strong> To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.</p>
+              </li>
+              <li>
+              <p><strong>To provide You</strong> with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.</p>
+              </li>
+              <li>
+              <p><strong>To manage Your requests:</strong> To attend and manage Your requests to Us.</p>
+              </li>
+              <li>
+              <p><strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.</p>
+              </li>
+              <li>
+              <p><strong>For other purposes</strong>: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.</p>
+              </li>
+              </ul>
+              <p>We may share Your personal information in the following situations:</p>
+              <ul>
+              <li><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.</li>
+              <li><strong>For business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li>
+              <li><strong>With Affiliates:</strong> We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.</li>
+              <li><strong>With business partners:</strong> We may share Your information with Our business partners to offer You certain products, services or promotions.</li>
+              <li><strong>With other users:</strong> when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside. If You interact with other users or register through a Third-Party Social Media Service, Your contacts on the Third-Party Social Media Service may see Your name, profile, pictures and description of Your activity. Similarly, other users will be able to view descriptions of Your activity, communicate with You and view Your profile.</li>
+              <li><strong>With Your consent</strong>: We may disclose Your personal information for any other purpose with Your consent.</li>
+              </ul>
+              <h2>Retention of Your Personal Data</h2>
+              <p>The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.</p>
+              <p>The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods.</p>
+              <h2>Transfer of Your Personal Data</h2>
+              <p>Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.</p>
+              <p>Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.</p>
+              <p>The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information.</p>
+              <h2>Disclosure of Your Personal Data</h2>
+              <h3>Business Transactions</h3>
+              <p>If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.</p>
+              <h3>Law enforcement</h3>
+              <p>Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).</p>
+              <h3>Other legal requirements</h3>
+              <p>The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:</p>
+              <ul>
+              <li>Comply with a legal obligation</li>
+              <li>Protect and defend the rights or property of the Company</li>
+              <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
+              <li>Protect the personal safety of Users of the Service or the public</li>
+              <li>Protect against legal liability</li>
+              </ul>
+              <h2>Security of Your Personal Data</h2>
+              <p>The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.</p>
+              <h1>Links to Other Websites</h1>
+              <p>Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit.</p>
+              <p>We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p>
+              <h1>Changes to this Privacy Policy</h1>
+              <p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.</p>
+              <p>We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the &quot;Last updated&quot; date at the top of this Privacy Policy.</p>
+              <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+              <h1>Contact Us</h1>
+              <p>If you have any questions about this Privacy Policy, You can contact us:</p>
+              <ul>
+              <li>By email: zenith.app (at) gmail.com</li>
+              </ul><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script async src='/cdn-cgi/bm/cv/669835187/api.js'></script><script type="text/javascript">(function(){window['__CF$cv$params']={r:'60a60aae2fbb068e',m:'9db93c14380b5da5d938524a87c2a084de7180c2-1609439111-1800-AZEW5DdNo7BrHI7IxHVvy7r05SrVfFkDC6+yvGZcFIuyt0BJt+y243110ytLSQtW3lzGZvjJvrb22vBOXUz1R7QQ8OZKBmE1R+yWp/Z4mXeWcIjpU+X3AN2iGYyc9QmQ51u4RHE6mWU/xhadPLnME6JNKGa1t3FnZ8WUlRPmcmwH1rblKjcIWxIUcqw9xbzqjw==',s:[0x6f8b6f145a,0x20654a24da],}})();</script>
+              <!-- end row -->
+            </section>
+            <!-- end section -->
+
+            <section id="line6" class="section">
+              <div class="row">
+                <div class="col-md-12 left-align">
+                  <h2 class="dark-text">
+                    Terms of Service
+                    <hr />
+                  </h2>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row -->
+
+              <p>
+              Copyright 2021 Samuel Hine<br>
+
+              Licensed under the Apache License, Version 2.0 (the "License");
+              you may not use this file except in compliance with the License.
+              You may obtain a copy of the License at <br /><br />
+
+                  <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a><br /><br />
+
+              Unless required by applicable law or agreed to in writing, software
+              distributed under the License is distributed on an "AS IS" BASIS,
+              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+              See the License for the specific language governing permissions and
+              limitations under the License.
+              </p>
+              <!-- end row -->
+            </section>
+            <!-- end section -->
+          </div>
+          <!-- // end .col -->
+        </div>
+        <!-- // end .row -->
+      </div>
+      <!-- // end container -->
+    </div>
+    <!-- end wrapper -->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/retina.js"></script>
+    <script src="js/jquery.fitvids.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+
+    <!-- CUSTOM PLUGINS -->
+    <script src="js/custom.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="js/syntax-highlighter/scripts/shCore.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushXml.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushCss.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushJScript.js"></script>
+  </body>
+</html>
